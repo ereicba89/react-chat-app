@@ -9,11 +9,10 @@ const NavBar = ({ room }) => {
     return (
         <div className="navBar">
             <div className="leftInnerContainer">
-                <div className="onlineIcon" src={onlineIcon} alt="online imagen">
-                    <h3>{room}</h3>
-                </div>
+                <img className="onlineIcon" src={onlineIcon} alt="online imagen" />
+                <h3>{room}</h3>
             </div>
-            <div className="rigthInnerContainer">
+            <div className="rightInnerContainer">
                 <a href="/" className=""><img src={closeIcon} alt="close imagen" /></a>
             </div>
         </div>

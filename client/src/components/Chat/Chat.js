@@ -5,6 +5,7 @@ import io from 'socket.io-client'
 import NavBar from '../NavBar/NavBar'
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
+import TextContainer from '../TextContainer/TextContainer'
 
 import './Chat.component.scss'
 
@@ -14,6 +15,7 @@ let socket;
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [users, setUsers] = useState('');
     const [mensaje, setMensaje] = useState('');
     const [mensajes, setMensajes] = useState([]);
 
@@ -47,9 +49,15 @@ const Chat = ({ location }) => {
     //use effect para manejo de mensajes
     useEffect(() => {
         socket.on('mensaje', (mensaje) => {
-            setMensajes([...mensajes, mensaje])
+            debugger
+            setMensajes(mensajes => [...mensajes, mensaje])
         })
-    }, [mensajes])
+
+        socket.on("datosSala", ({ users }) => {
+            debugger
+            setUsers(users);
+          });
+    }, [])
 
     //funcion para enviar mensajes
     const enviarMensaje = (event) => {
@@ -70,6 +78,7 @@ const Chat = ({ location }) => {
                 <Messages mensajes={mensajes} name={name}/>
                 <Input mensaje={mensaje} setMensaje={setMensaje} enviarMensaje={enviarMensaje} /> 
             </div>
+            {/* <TextContainer users={users} /> */}
         </div>
     );
 };

@@ -5,7 +5,7 @@ import './Input.component.scss'
 const Input = ({ mensaje, setMensaje, enviarMensaje}) => {
     return (
         <form action="" className="form">
-            <input type="text" className="input" placeholder="name" value={mensaje}
+            <input type="text" className="input" placeholder="mensaje" value={mensaje}
                 onChange={(event) => setMensaje(event.target.value)}
                 onKeyPress={event => event.key === 'Enter' ? enviarMensaje(event) : null} />
 

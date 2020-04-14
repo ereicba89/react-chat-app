@@ -7,6 +7,9 @@ const addUser = ({ id, name, room }) => {
     room = room.trim().toLowerCase()
 
     const existingUser = users.find((user) => user.room === room && user.name === name)
+    if(!name || !room) {
+        return { error: 'Usuario y sala son requeridos' };
+    }
     if (existingUser) {
         return { error: 'El nombre del usuario fue tomado' };
     }
@@ -28,9 +31,9 @@ const getUser = (id) => {
     return users.find((user) => user.id === id)
 }
 
-const getUserInRoom = (room) => {
-    return users.find((user) => user.room === room)
+const getUsersInRoom = (room) => {
+    return users.filter((user) => user.room === room)
 }
 
-module.exports = { addUser, removeUser, getUser, getUserInRoom }
+module.exports = { addUser, removeUser, getUser, getUsersInRoom }
 
