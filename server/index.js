@@ -1,6 +1,7 @@
 const express = require('express')
 const socketio = require('socket.io')
 const http = require('http')
+const cors = require('cors')
 
 //importando el modulo de usuarios
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
@@ -17,6 +18,7 @@ const io = socketio(server);
 
 //lo importamos como un middleware
 app.use(router)
+app.use(cors())
 
 io.on('connect', (socket) => {
     //console.log('Tenemos una nueva conexion')
