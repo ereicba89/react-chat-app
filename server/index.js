@@ -19,7 +19,7 @@ const io = socketio(server);
 app.use(router)
 
 io.on('connect', (socket) => {
-    console.log('Tenemos una nueva conexion')
+    //console.log('Tenemos una nueva conexion')
 
     socket.on('ingresando', ({name, room}, callback) => {
         const { error, user } = addUser({id: socket.id, name, room})
@@ -38,7 +38,7 @@ io.on('connect', (socket) => {
 
     socket.on('enviarMensaje', (mensaje, callback) => {
         const user = getUser(socket.id);
-        console.log(user);
+        //console.log(user);
 
         io.to(user.room).emit('mensaje', {user: user.name, text: mensaje})
 
@@ -47,7 +47,7 @@ io.on('connect', (socket) => {
 
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
-        console.log('user bakckend', user);
+        //console.log('user bakckend', user);
 
         if(user){
             io.to(user.room).emit('mensaje', {user:'admin', text: `${user.name} ha dejado la sala`} )
@@ -58,6 +58,6 @@ io.on('connect', (socket) => {
 
 //especificamos el puerto
 server.listen(PORT, ()=>{
-    console.log(`Server fue iniciado en el puerto ${PORT}`);
+    //console.log(`Server fue iniciado en el puerto ${PORT}`);
 })
   

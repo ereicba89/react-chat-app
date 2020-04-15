@@ -23,14 +23,14 @@ const Chat = ({ location }) => {
 
     useEffect(() => {
         const { name, room } = queryString.parse(location.search)
-        console.log(name, room);
+        //console.log(name, room);
 
         socket = io(ENDPOINT)
 
         setName(name);
         setRoom(room);
 
-        console.log(socket);
+        //console.log(socket);
 
         socket.emit('ingresando', { name, room }, (error) => {
             if(error) {
@@ -69,7 +69,7 @@ const Chat = ({ location }) => {
         }
     }
 
-    console.log(mensaje, mensajes);
+    //console.log(mensaje, mensajes);
 
     return (
         <div className="outerContainer">
