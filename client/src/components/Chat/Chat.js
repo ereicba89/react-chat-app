@@ -49,12 +49,12 @@ const Chat = ({ location }) => {
     //use effect para manejo de mensajes
     useEffect(() => {
         socket.on('mensaje', (mensaje) => {
-            debugger
+            // debugger
             setMensajes(mensajes => [...mensajes, mensaje])
         })
 
         socket.on("datosSala", ({ users }) => {
-            debugger
+            // debugger
             setUsers(users);
           });
     }, [])
